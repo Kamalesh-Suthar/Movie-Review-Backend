@@ -108,7 +108,6 @@ app.post('/post-review', (req, res) => {
 
     User.findById(req.body.userId)
         .then((response) => {
-            let userName = response.name
 
             let newReview = new Review({
                 title: req.body.title,
@@ -116,7 +115,7 @@ app.post('/post-review', (req, res) => {
                 createdOn: createdOn,
                 movieId: req.body.movieId,
                 userId: req.body.userId,
-                userName: userName
+                userName: req.body.name
             })
 
             newReview.save().then((result) => {
